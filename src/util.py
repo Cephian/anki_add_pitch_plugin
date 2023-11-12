@@ -296,12 +296,12 @@ def get_acc_patt(expr_field, reading_field, dicts):
     """
 
     def select_best_patt(reading_field, patts):
-        best_pos = 9001
+        best_pos = (9001, 9001)
         best = patts[0]  # default
         for patt in patts:
             hira, _ = patt
             try:
-                pos = reading_field.index(hira)
+                pos = (reading_field.index(hira), len(hira))
                 if pos < best_pos:
                     best = patt
                     best_pos = pos
