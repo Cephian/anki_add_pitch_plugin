@@ -296,18 +296,12 @@ def get_acc_patt(expr_field, reading_field, dicts):
     """
 
     def select_best_patt(reading_field, patts):
-        best_pos = (9001, 9001)
-        best = patts[0]  # default
         for patt in patts:
             hira, _ = patt
-            try:
-                pos = (reading_field.index(hira), len(hira))
-                if pos < best_pos:
-                    best = patt
-                    best_pos = pos
-            except ValueError:
-                continue
-        return best
+            if hira == reading_field:
+                return patt
+        return False
+
     expr_guess = clean_japanese_from_note_field(expr_field)
     if expr_guess is None:
         return False
